@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}Register | Student File Portal{% endblock %}
+{% block content %}
+<section class="card wide-card">
+  <div class="eyebrow">Create an account</div>
+  <h1>Register and upload your file</h1>
+  <p class="lede">Your profile and file details will be saved in the SQLite database.</p>
+  <form method="post" action="{{ url_for('register') }}" enctype="multipart/form-data">
+    <div class="form-grid">
+      <label>Username
+        <input name="username" value="{{ form.username if form else '' }}" required autocomplete="username">
+      </label>
+      <label>Password
+        <input type="password" name="password" required minlength="6" autocomplete="new-password">
+      </label>
+      <label>First name
+        <input name="first_name" value="{{ form.first_name if form else '' }}" required autocomplete="given-name">
+      </label>
+      <label>Last name
+        <input name="last_name" value="{{ form.last_name if form else '' }}" required autocomplete="family-name">
+      </label>
+      <label class="full-width">Email
+        <input type="email" name="email" value="{{ form.email if form else '' }}" required autocomplete="email">
+      </label>
+      <label class="full-width">Address
+        <textarea name="address" rows="3" required autocomplete="street-address">{{ form.address if form else '' }}</textarea>
+      </label>
+      <label class="file-field full-width">Text file
+        <input type="file" name="text_file" accept=".txt,text/plain" required>
+        <span>Upload the instructor-provided Limerick (1).txt file. Maximum size: 1 MB.</span>
+      </label>
+    </div>
+    <button type="submit">Create account and view profile</button>
+  </form>
+  <p class="secondary-link">Already registered? <a href="{{ url_for('login') }}">Log in to retrieve your information</a>.</p>
+</section>
+{% endblock %}

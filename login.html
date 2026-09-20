@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Login | Student File Portal{% endblock %}
+{% block content %}
+<section class="card compact-card">
+  <div class="eyebrow">Returning user</div>
+  <h1>Retrieve your profile</h1>
+  <p class="lede">Enter the same credentials used during registration.</p>
+  <form method="post" action="{{ url_for('login') }}">
+    <label>Username
+      <input name="username" value="{{ username or '' }}" required autocomplete="username" autofocus>
+    </label>
+    <label>Password
+      <input type="password" name="password" required autocomplete="current-password">
+    </label>
+    <button type="submit">Log in</button>
+  </form>
+  <p class="secondary-link">Need an account? <a href="{{ url_for('register') }}">Register here</a>.</p>
+</section>
+{% endblock %}

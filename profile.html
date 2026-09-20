@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Profile | Student File Portal{% endblock %}
+{% block content %}
+<section class="card wide-card">
+  <div class="profile-heading">
+    <div>
+      <div class="eyebrow">Saved profile</div>
+      <h1>{{ user['first_name'] }} {{ user['last_name'] }}</h1>
+      <p class="lede">The information below was retrieved from SQLite.</p>
+    </div>
+    <div class="avatar" aria-hidden="true">{{ user['first_name'][0] }}{{ user['last_name'][0] }}</div>
+  </div>
+
+  <dl class="details-grid">
+    <div><dt>Username</dt><dd>{{ user['username'] }}</dd></div>
+    <div><dt>Email</dt><dd>{{ user['email'] }}</dd></div>
+    <div class="full-width"><dt>Address</dt><dd>{{ user['address'] }}</dd></div>
+  </dl>
+
+  <div class="file-card">
+    <div>
+      <div class="eyebrow">Uploaded text file</div>
+      <h2>{{ user['original_filename'] }}</h2>
+    </div>
+    <div class="count"><strong>{{ user['word_count'] }}</strong><span>words</span></div>
+    <a class="button-link" href="{{ url_for('download_file') }}">Download file</a>
+  </div>
+
+  <form method="post" action="{{ url_for('logout') }}" class="logout-form">
+    <button class="secondary-button" type="submit">Log out and test re-login</button>
+  </form>
+</section>
+{% endblock %}
